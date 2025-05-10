@@ -1,0 +1,14 @@
+.user {
+    font-weight: bold;
+}
+
+.chatgod-message {
+    justify-content: flex-end;
+    text-align: right;
+    font-weight: bold;
+    color: #000000; /* Optional: Make it stand out */
+}
+
+.chatgod-message .user {
+    display: none; /* Hide the username */
+}

@@ -1,6 +1,11 @@
-.App {
+* {
+  cursor: url('assets/catcursor.png'), auto;
+}
+
+.room {
   text-align: center;
 }
+
 
 .App-logo {
   height: 40vmin;
@@ -27,6 +32,17 @@
 .App-link {
   color: #61dafb;
 }
+
+.gif-container {
+  position:absolute;
+  width: 100%;
+}
+
+.doraemon {
+  width: 25%;
+  height: 25%;
+}
+
 
 @keyframes App-logo-spin {
   from {
