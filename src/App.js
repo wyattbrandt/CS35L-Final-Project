@@ -10,6 +10,9 @@ import doraemonGif from './assets/doraemon.gif'
 import './App.css'
 
 const cookies = new Cookies();
+const colors = [
+  "red", "orange", "yellow", "green", "blue", "purple", "pink", "brown", "black"
+];
 
 let newUsername = "";
 
@@ -23,11 +26,13 @@ function App() {
   const canvasRef = useRef(null);
   const [drawing, setDrawing] = useState(false);
   const [tool, setTool] = useState("pencil");
+  const [color, setColor] = useState("black");
   const ctxRef = useRef(null);
 
   const startDrawing = (e) => {
     setDrawing(true);
     const ctx = canvasRef.current.getContext("2d");
+    ctx.strokeStyle = color;
     ctx.beginPath();
     ctx.moveTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
     ctxRef.current = ctx;
@@ -133,6 +138,25 @@ function App() {
           <button onClick={clearCanvas}>Clear</button>
           <button onClick={switchToPencil}>Pencil</button>
           <button onClick={switchToEraser}>Eraser</button>
+            <div className="color-buttons">
+              {colors.map((c) => (
+                <button
+                  key={c}
+                  onClick={() => setColor(c)}
+                  style={{
+                    backgroundColor: c,
+                    color: c === "yellow" ? "black" : "white", //i hate the color yellow it breaks the continuity :/
+                    border: color === c ? "2px solid #333" : "none",
+                    marginRight: "5px",
+                    padding: "5px 10px",
+                    borderRadius: "5px"
+                  }}
+                >
+                  {c}
+                </button>
+              ))}
+            </div>
+
           </div>
         </div>
       ) : (
