@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { addDoc, collection, serverTimestamp, onSnapshot, query, where, orderBy } from 'firebase/firestore';
-import { db } from '../firebase-config';
+import { db, auth } from '../firebase-config';
 import '../styles/Chat.css';
 import Cookies from 'universal-cookie';
 
@@ -12,7 +12,8 @@ export const Chat = (props) => {
     const [messages, setMessages] = useState([]);
     const messagesRef = collection(db, "messages");
     const username = cookies.get("username") || ("Anonymous" + Math.floor(Math.random() * 999));
-    const uid = cookies.get("uid");
+    // const uid = cookies.get("uid");
+    const uid = auth.currentUser?.uid;
 
     const messagesEndRef = useRef(null);
 
