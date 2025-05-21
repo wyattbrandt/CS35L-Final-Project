@@ -132,3 +132,14 @@ html, body, #root {
     transform: rotate(360deg);
   }
 }
+
+.tool-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* or center if you prefer centered buttons */
+  padding: 16px;
+  gap: 10px; /* space between each button */
+  background-color: white;
+  height: 100vh;
+  overflow-y: auto;
+}
