@@ -158,7 +158,7 @@ function App() {
       <head>
         <link rel="icon" href="assets/bluebladee.png"/>
         <link rel="stylesheet" href="./App.css" />
-        <title>b1ueroom</title>
+        <title>1000words</title>
       </head>
         {room ? (
           <div className="main-room">
@@ -235,8 +235,16 @@ function App() {
             <input ref={nameInputRef}/>
             
             <button onClick={changeName}> submit name ＊*•̩̩͙✩•̩̩͙*˚</button>
-            <div className="sign-out">
-              <button onClick={signUserOut}>sign out</button>
+           <div class="button-container">
+              <div className="sign-out">
+              <button onClick={() => setRoom("lobby1")}>Room1</button>
+              <button onClick={() => setRoom("lobby2")}>Room2</button>
+              <button onClick={() => setRoom("lobby3")}>Room3</button>
+              <button onClick={() => setRoom("lobby4")}>Room4</button>
+
+
+                <button onClick={signUserOut}>sign out</button>
+              </div>
             </div>
             <div class = "gif-container">
               <img src ={doraemonGif} alt="Doraemon" class="doraemon"></img>

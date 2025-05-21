@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "newb1ueroom"
-  }
+    "default": "newb1ueroom",
+    "words": "words-7e9de"
+  },
+  "targets": {},
+  "etags": {}
 }
