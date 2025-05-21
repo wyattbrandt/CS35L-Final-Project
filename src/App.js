@@ -17,6 +17,7 @@ const colors = [
 let newUsername = "";
 
 function App() {
+  const [fullscreenMode, setFullscreenMode] = useState(false);
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
   const [room, setRoom] = useState(null)
   const messagesRef = collection(db, "messages");
@@ -31,6 +32,10 @@ function App() {
   const [color, setColor] = useState("black");
   const ctxRef = useRef(null);
   const uid = auth.currentUser?.uid || cookies.get("uid");
+
+  const toggleFullscreen = () => {
+    setFullscreenMode(!fullscreenMode);
+  };
 
   const strokeWidths = {
     pen: 0.3,
@@ -145,7 +150,59 @@ function App() {
     clearCanvas();
   }
 
-
+  if (fullscreenMode) {
+    return (
+      <div className="fullscreen-canvas" style={{ display: "flex", height: "100vh", backgroundColor: "white" }}>
+        
+       {/* Sidebar with tools and colors */}
+        <div className="tool-sidebar" style={{ width: "200px", padding: "10px", backgroundColor: "#f5f5f5" }}>
+          <button onClick={() => setTool("pen")}>Pen</button>
+          <button onClick={() => setTool("pencil")}>Pencil</button>
+          <button onClick={() => setTool("marker")}>Marker</button>
+          <button onClick={() => setTool("brush")}>Paint Brush</button>
+          <button onClick={() => setTool("eraser")}>Eraser</button>
+  
+          <div className="color-buttons" style={{ marginTop: "10px" }}>
+            {colors.map((c) => (
+              <button
+                key={c}
+                onClick={() => setColor(c)}
+                style={{
+                  backgroundColor: c,
+                  color: c === "yellow" ? "black" : "white",
+                  border: color === c ? "2px solid #333" : "none",
+                  margin: "2px",
+                  padding: "5px 10px",
+                  borderRadius: "4px"
+                }}
+              >
+                {c}
+              </button>
+            ))}
+          </div>
+  
+          <button onClick={clearCanvas} style={{ marginTop: "10px" }}>Clear</button>
+          <button onClick={saveCanvasImage}>Send Drawing</button>
+          <div style={{ marginTop: "20px" }}>
+              <button onClick={() => setFullscreenMode(false)}>Back</button>
+          </div>
+          </div>
+  
+        {/* Fullscreen canvas */}
+        <canvas
+          ref={canvasRef}
+          width={window.innerWidth - 200}
+          height={window.innerHeight}
+          onMouseDown={startDrawing}
+          onMouseMove={draw}
+          onMouseUp={stopDrawing}
+          onMouseLeave={stopDrawing}
+          style={{ display: "block", flexGrow: 1 }}
+        />
+      </div>
+    );
+  }
+  
   if(!isAuth){
     return (
       <div>
@@ -203,7 +260,7 @@ function App() {
           </button>
         ))}
       </div>
-
+      <button onClick={() => setFullscreenMode(true)}>Fullscreen Mode</button>
       <button onClick={clearCanvas}>Clear</button>
       <button onClick={saveCanvasImage}>Send Drawing</button>
       <button onClick={leaveRoom}>Leave Room ☘︎</button>
