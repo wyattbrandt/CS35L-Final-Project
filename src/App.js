@@ -17,6 +17,8 @@ const colors = [
 let newUsername = "";
 
 function App() {
+  const [selectedTool, setSelectedTool] = useState("pencil");
+  const [lastDrawTool, setLastDrawTool] = useState("pencil"); 
   const [fullscreenMode, setFullscreenMode] = useState(false);
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
   const [room, setRoom] = useState(null)
@@ -33,6 +35,22 @@ function App() {
   const ctxRef = useRef(null);
   const uid = auth.currentUser?.uid || cookies.get("uid");
 
+  function handleToolSelect(tool) {
+    setSelectedTool(tool);
+    if (tool !== "eraser") {
+      setLastDrawTool(tool); // Save last drawing tool
+    }
+  }
+
+  function handleColorSelect(color) {
+    setSelectedColor(color);
+  
+    if (selectedTool === "eraser") {
+      setSelectedTool(lastDrawTool || "pencil");
+    }
+  }
+  
+  
   const toggleFullscreen = () => {
     setFullscreenMode(!fullscreenMode);
   };
