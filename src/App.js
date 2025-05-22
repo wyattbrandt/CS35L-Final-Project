@@ -9,6 +9,8 @@ import RoomSelect from "./RoomSelect";
 import Chatroom from "./Chatroom";
 
 function App() {
+  const [selectedTool, setSelectedTool] = useState("pencil");
+  const [lastDrawTool, setLastDrawTool] = useState("pencil"); 
   const [fullscreenMode, setFullscreenMode] = useState(false);
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
   const [room, setRoom] = useState(null);
@@ -28,17 +30,6 @@ function App() {
   const imagesRef = collection(db, "images");
 
   const uid = auth.currentUser?.uid || cookies.get("uid");
-
-  useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
 
   const toggleFullscreen = () => {
     setFullscreenMode(!fullscreenMode);
