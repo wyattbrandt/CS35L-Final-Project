@@ -2,8 +2,77 @@
   cursor: url('assets/catcursor.png'), auto;
 }
 
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
 .room {
   text-align: center;
+}
+
+.main-room {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.drawings-scroll {
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 10px;
+}
+
+.canvas-controls {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  z-index: 1;
+}
+
+.drawing-area {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-right: 1px solid #ccc;
+  padding: 10px;
+}
+
+.chat-area {
+  width: 25%;
+  overflow-y: auto;
+  height: 100vh;
+  padding: 10px;
+}
+
+canvas {
+  display: block;
+  border: 1px solid black;
+  margin-top: 10px;
+  max-width: 100%;
+}
+
+.tools {
+  margin-top: 10px;
+}
+
+.color-buttons {
+  margin: 10px 0;
+}
+
+.chat-app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 
