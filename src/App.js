@@ -18,6 +18,7 @@ let newUsername = "";
 
 function App() {
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
+  const [ isFullscreen, setFullscreen ] = useState(false);
   const [room, setRoom] = useState(null)
   const messagesRef = collection(db, "messages");
   const imagesRef = collection(db, "images");
@@ -64,12 +65,17 @@ function App() {
         e.nativeEvent.offsetY - 10,
         20,
         20
-      );
+      ); 
     } else {
       ctx.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
       ctx.stroke();
     }
   };
+
+  const setColorTool = (c) => {
+    setColor(c);
+    setTool("Pencil");
+  }
 
 
   const stopDrawing = () => {
@@ -81,6 +87,10 @@ function App() {
     const ctx = canvasRef.current.getContext("2d");
     ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
   };
+
+  const switchFullscreen = () => {
+    setFullscreen(!isFullscreen);
+  }
 
 
   const switchToPencil = () => {
@@ -168,15 +178,17 @@ function App() {
   </div>
 
   <div className="canvas-controls">
-    <canvas
-      ref={canvasRef}
-      width={550}
-      height={250}
-      onMouseDown={startDrawing}
-      onMouseMove={draw}
-      onMouseUp={stopDrawing}
-      onMouseLeave={stopDrawing}
-    />
+    <div className={`canvas${isFullscreen ? "-fullscreen" : ""}`}>
+      <canvas
+        ref={canvasRef}
+        width={550}
+        height={250}
+        onMouseDown={startDrawing}
+        onMouseMove={draw}
+        onMouseUp={stopDrawing}
+        onMouseLeave={stopDrawing}
+      />
+    </div>
     
     <div className="tools">
       <button onClick={() => setTool("pen")}>Pen</button>
@@ -184,12 +196,13 @@ function App() {
       <button onClick={() => setTool("marker")}>Marker</button>
       <button onClick={() => setTool("brush")}>Paint Brush</button>
       <button onClick={() => setTool("eraser")}>Eraser</button>
+      {/* <button onClick={switchFullscreen}>Fullscreen</button> */}
 
       <div className="color-buttons">
         {colors.map((c) => (
           <button
             key={c}
-            onClick={() => setColor(c)}
+            onClick={() => setColorTool(c)}
             style={{
               backgroundColor: c,
               color: c === "yellow" ? "black" : "white",
@@ -222,12 +235,12 @@ function App() {
         ) : (
         <div class="room">
             <label>
-              ᓚ₍⑅^- .-^₎ -ᶻ 𝗓 𐰁✧ <br></br>
-              Enter Room Name:
+              𓍊𓋼𓍊𓋼𓍊𓆏 <br></br>
+              Private Room Code:
               </label>
             <input ref={roomInputRef}/>
             
-            <button onClick={joinRoom}> ≽^•⩊•^≼ enter chatroom ₍^. .^₎⟆</button>
+            <button onClick={joinRoom}> ≽^•⩊•^≼ enter room ₍^. .^₎⟆</button>
             <label>
               <br></br>
               Enter Username:
