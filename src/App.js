@@ -43,6 +43,7 @@ function App() {
   const startDrawing = (e) => {
     setDrawing(true);
     const ctx = canvasRef.current.getContext("2d");
+    ctx.strokeStyle = color;
     ctx.beginPath();
     ctx.moveTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
     ctxRef.current = ctx;
