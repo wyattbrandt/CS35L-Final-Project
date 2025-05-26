@@ -4,7 +4,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import Login from "./Login";
 import RoomSelect from "./RoomSelect";
-import ChatRoom from "./Chatroom";
+import Chatroom from "./Chatroom";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -33,10 +33,7 @@ function App() {
           path="/rooms"
           element={user ? <RoomSelect /> : <Navigate to="/" replace />}
         />
-        <Route
-          path="/chat"
-          element={user ? <ChatRoom /> : <Navigate to="/" replace />}
-        />
+        <Route path="/chat" element={<Chatroom />} />
       </Routes>
     </Router>
   );
