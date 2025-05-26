@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
+import "./styles/App.css";
 import Login from "./Login";
 import RoomSelect from "./RoomSelect";
 import Chatroom from "./Chatroom";

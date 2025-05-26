@@ -63,12 +63,6 @@
     background-color: #feecec;
   }
   
-  .canvas-area {
-    padding: 1rem;
-    border-top: 1px solid #ccc;
-    background-color: #fff;
-  }
-  
   .right-panel {
     width: 40%;
     overflow-y: auto;
@@ -125,6 +119,13 @@ html, body {
     background-color: #fff;
     border-top: 1px solid #ccc;
   }
+
+  .drawing-canvas {
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 2px;
+  }
+  
   
   /* Right panel: chat */
   .right-panel {
