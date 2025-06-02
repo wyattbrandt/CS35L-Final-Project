@@ -1,0 +1,151 @@
+* {
+  cursor: url('../assets/catcursor.png'), auto;
+}
+
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
+.room {
+  text-align: center;
+}
+
+.main-room {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.drawings-scroll {
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 10px;
+}
+
+.canvas-controls {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  z-index: 1;
+}
+
+.drawing-area {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-right: 1px solid #ccc;
+  padding: 10px;
+}
+
+.chat-area {
+  width: 25%;
+  overflow-y: auto;
+  height: 100vh;
+  padding: 10px;
+}
+
+.canvas {
+  display: block;
+  border: 1px solid black;
+  margin-top: 10px;
+  max-width: 100%;
+
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
+  width: 550px;
+  height: 250px;
+}
+
+/* Fullscreen canvas */
+.canvas-fullscreen {
+  display: block;
+  border: 1px solid black;
+  margin-top: 10px;
+  max-width: 100%;
+  width: 1100px;
+  height: 500px;
+}
+
+.tools {
+  margin-top: 10px;
+}
+
+.color-buttons {
+  margin: 10px 0;
+}
+
+.chat-app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.gif-container {
+  position: absolute;
+  width: 100%;
+}
+
+.doraemon {
+  width: 25%;
+  height: 25%;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.tool-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* or center if you prefer centered buttons */
+  padding: 16px;
+  gap: 10px; /* space between each button */
+  background-color: white;
+  height: 100vh;
+  overflow-y: auto;
+}
