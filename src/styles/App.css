@@ -68,6 +68,10 @@ html, body, #root {
   border: 1px solid black;
   margin-top: 10px;
   max-width: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   width: 1100px;
   height: 500px;
 }
