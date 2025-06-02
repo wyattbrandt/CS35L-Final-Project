@@ -11,7 +11,7 @@ import { Chat } from './components/Chat';
 import { Drawings } from './components/Drawings';
 import { signOut } from 'firebase/auth';
 import { addDoc, serverTimestamp, collection } from 'firebase/firestore';
-import Cookies from 'universal-cookies';
+import Cookies from 'universal-cookie';
 import { auth, db } from "./firebase-config";
 import doraemonGif from './assets/doraemon.gif';
 
