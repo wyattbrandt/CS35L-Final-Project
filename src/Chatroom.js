@@ -3,11 +3,11 @@ import Header from "./components/Header";
 import React, { useRef, useState, useEffect } from "react";
 import { Chat } from "./components/Chat";
 import { Drawings } from "./components/Drawings";
-import { auth, db } from "./firebase-config";
+import { auth } from "./firebase-config";
 import Cookies from "universal-cookie";
 import "./styles/App.css";
 import "./styles/Chat.css";
-import { addDoc, serverTimestamp, collection } from "firebase/firestore";
+import { sendSystemMessage, uploadDrawing } from "./server";
 
 const cookies = new Cookies();
 const colors = [
@@ -43,15 +43,9 @@ export const Chatroom = () => {
   
       hasSentJoinMessage.current = true;
   
-      await addDoc(collection(db, "messages"), {
-        text: `${username} joined the room`,
-        createdAt: serverTimestamp(),
-        user: "CHATG0D",
-        room,
-        uid: "system",
-      });
-    };
-  
+      // HERE
+        await sendSystemMessage({ room, text: `${username} joined the room` });
+      };
     sendJoinMessage();
   }, [room, username]);
   
@@ -99,24 +93,17 @@ export const Chatroom = () => {
   const saveCanvasImage = async () => {
     const canvas = canvasRef.current;
     const imageDataUrl = canvas.toDataURL("image/png");
-    await addDoc(collection(db, "images"), {
-      image: imageDataUrl,
-      createdAt: serverTimestamp(),
-      user: username,
-      room,
-      uid,
-    });
+  await uploadDrawing({
+    image: imageDataUrl,
+    room,
+    user: username,
+    uid,
+  });
     clearCanvas();
   };
 
   const leaveRoom = async () => {
-    await addDoc(collection(db, "messages"), {
-      text: `${username} left the room`,
-      createdAt: serverTimestamp(),
-      user: "CHATG0D",
-      room,
-      uid: "system",
-    });
+    await sendSystemMessage({ room, text: `${username} left the room` });
     navigate("/"); // go back to room select
   };
 
